@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | My portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>[Logo]</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inici</a></li>
+                <li><a href="projectes.html">Projectes</a></li>
+                <li><a href="contacte.html">Contacte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Contact me: </h2>
+
+            <form id="contactForm">
+                <label for="nom">Name: </label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="email">Email: </label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefon">Phone number: </label>
+                <input type="tel" id="telefon" name="telefon" pattern="[0-9]{9}" title="El telèfon ha de tenir 9 dígits (opcional)">
+
+                <label for="assumpte">Subject: </label>
+                <input type="text" id="assumpte" name="assumpte" required>
+
+                <label for="missatge">Message: </label>
+                <textarea id="missatge" name="missatge" rows="1" required></textarea>
+
+                <button type="submit">Send message.</button>
+            </form>
+
+            <p id="js-message" style="color: green; margin-top: 15px; display: none;">Missatge JS d'èxit o error de validació.</p>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script> <script>
+        // Exemple de la Funcionalitat JS 1: Validació de Formulari
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // El codi JS de validació anirà aquí, comprovant els camps i el 'pattern' del telèfon
+            // Si la validació falla, s'utilitza e.preventDefault();
+            // Després s'actualitza l'element <p id="js-message">
+        });
+    </script>
+</body>
+</html>
