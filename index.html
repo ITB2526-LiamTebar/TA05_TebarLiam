@@ -2,65 +2,29 @@
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="El meu Portfolio Personal - Desenvolupador Web">
-    <title>Inici | El Meu Portfolio</title>
-    <link rel="stylesheet" href="css/style.css"> </head>
+    <title>Contact | Liam Tebar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-
     <header>
-        <div class="logo">
-            <h1><img src="jarvis.jpg" alt="Jarvis, jerk it a lil'." width="75" height="75"></h1>
-        </div>
+        <div class="logo"><img src="jarvis.jpg" alt="Logo" width="75" height="75"></div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projectes.html">Projects</a></li>
-                <li><a href="contacte.html">Contact</a></li>
+                <li><a href="index.html" data-text="home">Home</a></li>
+                <li><a href="projectes.html" data-text="projects">Projects</a></li>
+                <li><a href="contacte.html" data-text="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
-
-        <section id="intro">
-            <h2>Hi, I'm Liam Tebar, welcome to my portfolio.</h2>
-            <p>I am a cybersecurity student at ITB. You can see some of my most notable projects below.</p>
-        </section>
-
-        <h3>Highlighted projects</h3>
-
-        <div class="destacats">
-            <article>
-                <h4>Project 1: Hello world.</h4>
-                <p>Project 1 brief description. It's simply a code which displays "Hello world".</p>
-                <a href="projecte_1.html" class="button">View details</a>
-            </article>
-
-            <article>
-                <h4>Project 2: Data conversor.</h4>
-                <p>Project 2 brief description. This project consists of a code capable of extracting info from a Google form that then filters and displays. It also saves it as a JSON document.</p>
-                <a href="projecte_2.html" class="button">View details</a>
-            </article>
-        </div>
-
-        <aside>
-            <h4>My key skills:</h4>
-            <ul>
-                <li>HTML & CSS</li>
-                <li>JavaScript (ES6+) & python 3</li>
-                <li>MySQL</li>
-            </ul>
-        </aside>
-
+        <h2>Contact me</h2>
+        <form id="contactForm">
+            <label>Name:</label> <input type="text" required>
+            <label>Email:</label> <input type="email" required>
+            <label>Message:</label> <textarea rows="4" required></textarea>
+            <button type="submit" data-text="SEND MESSAGE">Send message</button>
+        </form>
     </main>
-
-    <footer>
-        <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
-        </div>
-    </footer>
-
-    </body>
+    <footer><p>&copy; 2026 Liam Tebar</p></footer>
+</body>
 </html>
