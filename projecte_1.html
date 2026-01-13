@@ -3,15 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detall Projecte 1 | El Meu Portfolio</title>
+    <title>Project 1 Details | My portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-main-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Fila superior: Texto + Foto 1 (Mediana) */
+        .project-top-row {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .text-content { flex: 1; }
+
+        .medium-img {
+            width: 300px; /* Aumentada para que se vea bien */
+            border: 1px solid #00D000;
+            filter: grayscale(1) brightness(0.8) sepia(100%) hue-rotate(90deg);
+            transition: 0.3s;
+        }
+
+        /* Foto 2: Grande pero no gigante (70%) */
+        .large-img-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centramos la foto grande */
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .large-img {
+            width: 70%; /* Ni 100% ni pequeña, el punto justo */
+            max-height: 450px;
+            object-fit: contain; /* Para que no se recorte nada */
+            border: 1px solid #00D000;
+            filter: grayscale(1) brightness(0.8) sepia(100%) hue-rotate(90deg);
+            transition: 0.4s;
+        }
+
+        .medium-img:hover, .large-img:hover {
+            filter: none;
+            border-color: #fff;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 850px) {
+            .project-top-row { flex-direction: column; }
+            .medium-img, .large-img { width: 100%; }
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <div class="logo">
-            <h1><img src="jarvis.jpg" alt="Jarvis, jerk it a lil'." width="75" height="75"></h1>
-        </div>
+        <div class="logo"><img src="jarvis.jpg" alt="Logo" width="75" height="75"></div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,35 +72,52 @@
 
     <main>
         <article>
-            <h2>Project 1 details: Hello world!</h2>
-            <p class="data">Completion date: 24/8/2025.</p>
+            <h4>Project details: Hello world!</h4>
+            <div class="cuerpo-caja">
+                <div class="project-main-wrapper">
 
-            <section id="descripcio">
-                <h3>General description: </h3>
-                <p>This project consists in a simple code that displays the phrase "Hello world.". This project was my first ever code in Python and it has a great sentimental value for that reason.</p>
-            </section>
+                    <div class="project-top-row">
+                        <div class="text-content">
+                            <p class="data">Completion date: 24/8/2025.</p>
+                            <section id="descripcio">
+                                <h3>Description:</h3>
+                                <p>Simple Python code for environment testing. This script marks the beginning of my journey in system automation and cybersecurity scripting.</p>
+                            </section>
+                            <section id="tecnologies">
+                                <h3>Tech stack:</h3>
+                                <ul>
+                                    <li>Python 3</li>
+                                    <li>VS Code</li>
+                                </ul>
+                            </section>
+                        </div>
+                        <img src="helloworld.png" alt="Secondary View" class="medium-img">
+                    </div>
 
-            <section id="tecnologies">
-                <h3>Tech used for this project:</h3>
-                <ul>
-                    <li>Python3 with PyCharm.</li>
-                </ul>
-            </section>
+                    <div class="large-img-container">
+                        <h3>Detailed View:</h3>
+                        <img src="helloworld2.png" alt="Main View" class="large-img">
+                    </div>
 
-            <section id="resultats">
-                <h3>Completion and conclusions:</h3>
-                <p>There's not really much to see here but, as I said, as this was my first ever code with Python, it's a really important "project" for me.</p>
-            </section>
-
+                </div>
+            </div>
+            <a href="projectes.html" class="button" data-text="BACK">BACK</a>
         </article>
     </main>
 
     <footer>
-        <p>&copy; 2026 Liam. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
+        <div class="footer-content">
+            <div class="clock-container" id="retro-clock">00:00:00</div>
+            <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('retro-clock').textContent = `[ ${String(now.getHours()).padStart(2,'0')} : ${String(now.getMinutes()).padStart(2,'0')} : ${String(now.getSeconds()).padStart(2,'0')} ]`;
+        }
+        setInterval(updateClock, 1000); updateClock();
+    </script>
 </body>
 </html>

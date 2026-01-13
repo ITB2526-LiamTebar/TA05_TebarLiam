@@ -5,109 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects list | My portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* FIX DE TÍTULOS: Todos medirán 45px de alto y no deformarán la caja */
+        article h4 {
+            grid-area: h4;
+            background: #00D000;
+            color: #000;
+            margin: 0;
+            padding: 0 10px; /* Quitamos padding vertical para controlar la altura exacta */
+            font-size: 0.85rem;
+            height: 45px;          /* Altura fija obligatoria */
+            display: flex;         /* Para centrar el texto verticalmente */
+            align-items: center;
+            overflow: hidden;      /* Corta el texto si es demasiado largo */
+            text-overflow: ellipsis; /* Añade "..." si no cabe */
+            box-sizing: border-box;
+            border-bottom: 1px solid #000;
+        }
+
+        /* Forzamos que todas las cajas tengan la misma estructura y no crezcan */
+        .llistat-projectes article {
+            height: 130px;
+            display: grid;
+            grid-template-areas: "h4 h4" "p btn";
+            grid-template-columns: 1fr 80px;
+            grid-template-rows: 45px 1fr;
+            overflow: hidden;
+            border: 1px solid #00D000;
+        }
+
+        .cuerpo-caja {
+            grid-area: p;
+            padding: 10px;
+            font-size: 0.8rem;
+            border-right: 1px solid #00D000;
+            overflow-y: auto; /* Por si la descripción es larga, permite scroll interno */
+        }
+    </style>
 </head>
 <body>
-
     <header>
         <div class="logo">
-            <h1><img src="jarvis.jpg" alt="Jarvis, jerk it a lil'." width="75" height="75"></h1>
+            <img src="jarvis.jpg" alt="Logo" width="75" height="75">
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projectes.html">Projects</a></li>
-                <li><a href="contacte.html">Contact</a></li>
+                <li><a href="index.html" data-text="Home">Home</a></li>
+                <li><a href="projectes.html" data-text="Projects">Projects</a></li>
+                <li><a href="contacte.html" data-text="Contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section>
-            <h2>All my projects: </h2>
-
-            <ul class="llistat-projectes">
-                <li>
-                    <h4><a href="projecte_1.html">Project 1: Hello world!</a></h4>
-                    <p>Python code that displays "Hello world.".</p>
-                </li>
-                <li>
-                    <h4><a href="projecte_2.html">Project 2: Data conversor.</a></h4>
-                    <p>Code that gets info from a Google forms, then filters and creates a JSON of the result.</p>
-                </li>
-                <li>
-                    <h4><a href="projecte_3.html">Project 3: Iron Aegis.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_4.html">Project 4: Sentinel Stream.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_5.html">Project 5: Bastion Gate.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_6.html">Project 6: Watchtower AI.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_7.html">Project 7: Ghost Wall.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_8.html">Project 8: Guardian Log.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_9.html">Project 9: Shield Sync.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_10.html">Project 10: Data conversor.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_11.html">Project 11: Strike Point.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_12.html">Project 12: Viper Payload.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_13.html">Project 13: Breach Scan.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_14.html">Project 14: Shadow Move.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_15.html">Project 15: Cipher Break.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_16.html">Project 16: Phantom Echo.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_17.html">Project 17: Apex Infiltrator.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_18.html">Project 18: Digital Trace.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_19.html">Project 19: Deep Probe.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_20.html">Project 20: Cortex Sandbox.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_21.html">Project 21: Ariadne’s Thread.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_22.html">Project 22: Void Recovery.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_23.html">Project 23: Dark Scope.</a></h4></li>
-                <li>
-                    <h4><a href="projecte_24.html">Project 24: Timeline Zero.</a></h4>
-                </li>
-                <li>
-                    <h4><a href="projecte_25.html">Project 25: Zero Trust Hub.</a></h4>
-                </li>
-                <li>
-                    <h4><a href="projecte_26.html">Project 26: Cloud Anchor.</a></h4>
-                </li>
-                <li>
-                    <h4><a href="projecte_27.html">Project 27: Safe Stack.</a></h4>
-                </li>
-                <li>
-                    <h4><a href="projecte_28.html">Project 28: Neural Guard.</a></h4>
-                </li>
-                <li>
-                    <h4><a href="projecte_29.html">Project 29: Kube Armor.</a></h4>
-                </li>
-                <li>
-                    <h4><a href="projecte_30.html">Project 30: Vault Core.</a></h4>
-                </li>
-            </ul>
-
-        </section>
+        <h2>All my projects: </h2>
+        <div class="llistat-projectes">
+            <article><h4>Project 1: Hello world!</h4><div class="cuerpo-caja"><p>Python code that displays "Hello world.".</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 2: Data conversor.</h4><div class="cuerpo-caja"><p>Code that filters Google forms and creates JSON.</p></div><a href="projecte_2.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 3: Iron Aegis Security Tool</h4><div class="cuerpo-caja"><p>In progress.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 4: Sentinel Stream</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 5: Bastion Gate Firewall</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 6: Watchtower AI</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 7: Ghost Wall Encryption</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 8: Guardian Log Parser</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 9: Shield Sync Protocol</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 10: Cyber Tracer 2000</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 11: Strike Point Pentest</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 12: Viper Payload Test</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 13: Breach Scan Engine</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 14: Shadow Move VPN</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 15: Cipher Break Lab</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 16: Phantom Echo Scanner</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 17: Apex Infiltrator Module</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 18: Digital Trace Tracker</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 19: Deep Probe Analyzer</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 20: Cortex Sandbox Environ</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 21: Ariadne’s Thread Logic</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 22: Void Recovery Tool</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 23: Dark Scope Monitor</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 24: Timeline Zero Backup</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 25: Zero Trust Hub</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 26: Cloud Anchor Guard</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 27: Safe Stack Layers</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 28: Neural Guard System</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 29: Kube Armor Shield</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+            <article><h4>Project 30: Vault Core Storage</h4><div class="cuerpo-caja"><p>Not yet started.</p></div><a href="projecte_1.html" class="button" data-text="VIEW">VIEW</a></article>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Liam. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
+        <div class="footer-content">
+            <div class="clock-container" id="retro-clock">00:00:00</div>
+            <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('retro-clock').textContent = `[ ${h} : ${m} : ${s} ]`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>

@@ -5,64 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact | My portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Ajuste para que el canvas sea 100% responsivo y rectangular */
+        #galaga-canvas {
+            background: radial-gradient(circle, #001000 0%, #000 100%);
+            display: block;
+            width: 100%; /* Se adapta al ancho del article */
+            height: auto;
+            border: 1px solid #00D000;
+            image-rendering: pixelated;
+        }
+        .game-instructions {
+            text-align: center;
+            font-size: 0.7rem;
+            margin-top: 10px;
+            color: #00D000;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <div class="logo">
-            <h1><img src="jarvis.jpg" alt="Jarvis, jerk it a lil'." width="75" height="75"></h1>
-        </div>
+        <div class="logo"><img src="jarvis.jpg" alt="Logo" width="75" height="75"></div>
         <nav>
             <ul>
-                <li><a href="index.html">Inici</a></li>
-                <li><a href="projectes.html">Projectes</a></li>
-                <li><a href="contacte.html">Contacte</a></li>
+                <li><a href="index.html" data-text="Home">Home</a></li>
+                <li><a href="projectes.html" data-text="Projects">Projects</a></li>
+                <li><a href="contacte.html" data-text="Contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section>
-            <h2>Contact me: </h2>
+        <article style="max-width: 600px;">
+            <h4>Establish Connection:</h4>
+            <div class="cuerpo-caja">
+                <form id="contactForm">
+                    <label>Name: </label><input type="text" required style="width:100%; margin-bottom:10px; background:#000; border:1px solid #005500; color:#00D000;">
+                    <label>Email: </label><input type="email" required style="width:100%; margin-bottom:10px; background:#000; border:1px solid #005500; color:#00D000;">
+                    <label>Message: </label><textarea rows="3" style="width:100%; background:#000; border:1px solid #005500; color:#00D000;"></textarea>
+                </form>
+            </div>
+            <button type="submit" form="contactForm" class="button" data-text="SEND">SEND</button>
+        </article>
 
-            <form id="contactForm">
-                <label for="nom">Name: </label>
-                <input type="text" id="nom" name="nom" required>
-
-                <label for="email">Email: </label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="telefon">Phone number: </label>
-                <input type="tel" id="telefon" name="telefon" pattern="[0-9]{9}" title="El telèfon ha de tenir 9 dígits (opcional)">
-
-                <label for="assumpte">Subject: </label>
-                <input type="text" id="assumpte" name="assumpte" required>
-
-                <label for="missatge">Message: </label>
-                <textarea id="missatge" name="missatge" rows="1" required></textarea>
-
-                <button type="submit">Send message.</button>
-            </form>
-
-            <p id="js-message" style="color: green; margin-top: 15px; display: none;">Missatge JS d'èxit o error de validació.</p>
-
-        </section>
+        <article style="max-width: 600px; margin-top: 30px;">
+            <h4>// System_Override: GALAGA_WIDE_EDITION</h4>
+            <div class="cuerpo-caja" style="border-right: none; padding: 0;">
+                <canvas id="galaga-canvas" width="600" height="350"></canvas>
+            </div>
+            <div class="game-instructions">ARROWS: Move | SPACE: Fire | R: Restart</div>
+        </article>
     </main>
 
     <footer>
-        <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
+        <div class="footer-content">
+            <div class="clock-container" id="retro-clock">00:00:00</div>
+            <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script> <script>
-        // Exemple de la Funcionalitat JS 1: Validació de Formulari
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            // El codi JS de validació anirà aquí, comprovant els camps i el 'pattern' del telèfon
-            // Si la validació falla, s'utilitza e.preventDefault();
-            // Després s'actualitza l'element <p id="js-message">
+    <script>
+        // --- RELOJ ---
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('retro-clock').textContent = `[ ${now.getHours().toString().padStart(2, '0')} : ${now.getMinutes().toString().padStart(2, '0')} : ${now.getSeconds().toString().padStart(2, '0')} ]`;
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        // --- GALAGA ENGINE WIDE ---
+        const canvas = document.getElementById('galaga-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let score = 0;
+        let sector = 1;
+        let gameActive = true;
+        const player = { x: 285, y: 310, w: 30, h: 30, speed: 7 };
+        let bullets = [];
+        let enemies = [];
+        const stars = Array.from({length: 60}, () => ({x: Math.random()*600, y: Math.random()*350, s: Math.random()*1.5 + 0.5}));
+
+        function createEnemies() {
+            enemies = [];
+            for(let row=0; row<3; row++) {
+                for(let col=0; col<10; col++) { // Más enemigos por fila al ser más ancho
+                    enemies.push({
+                        x: 80 + col*45,
+                        y: 40 + row*35,
+                        w: 24, h: 20,
+                        dir: 1
+                    });
+                }
+            }
+        }
+
+        function drawRetroShip(x, y) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.fillStyle = "#FFFFFF"; ctx.fillRect(12, 5, 6, 20);
+            ctx.fillStyle = "#FF0000"; ctx.fillRect(13, 0, 4, 5);
+            ctx.fillStyle = "#FFFFFF"; ctx.fillRect(5, 15, 20, 10);
+            ctx.fillStyle = "#0055FF"; ctx.fillRect(0, 20, 5, 10); ctx.fillRect(25, 20, 5, 10);
+            ctx.fillStyle = "#FF0000"; ctx.fillRect(8, 25, 4, 5); ctx.fillRect(18, 25, 4, 5);
+            ctx.restore();
+        }
+
+        function drawEnemy(x, y, row) {
+            const colors = ["#FF0044", "#00D000", "#FFFF00"];
+            ctx.fillStyle = colors[row % 3];
+            ctx.fillRect(x+5, y, 14, 5); ctx.fillRect(x, y+5, 24, 8);
+            ctx.fillRect(x+4, y+13, 4, 5); ctx.fillRect(x+16, y+13, 4, 5);
+        }
+
+        const keys = {};
+        window.addEventListener('keydown', e => {
+            keys[e.code] = true;
+            if(e.code === 'KeyR' && !gameActive) resetGame();
         });
+        window.addEventListener('keyup', e => keys[e.code] = false);
+
+        function resetGame() {
+            score = 0; sector = 1; gameActive = true;
+            player.x = 285; bullets = [];
+            createEnemies();
+            requestAnimationFrame(update);
+        }
+
+        function update() {
+            if(!gameActive) return;
+
+            ctx.fillStyle = "#000"; ctx.fillRect(0,0,600,350);
+            ctx.fillStyle = "rgba(0, 208, 0, 0.4)";
+            stars.forEach(s => { s.y += s.s; if(s.y > 350) s.y = 0; ctx.fillRect(s.x, s.y, 1, 1); });
+
+            if(keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
+            if(keys['ArrowRight'] && player.x < canvas.width - player.w) player.x += player.speed;
+            if(keys['Space'] && bullets.length < 4) {
+                bullets.push({x: player.x + 13, y: player.y, s: 9});
+                keys['Space'] = false;
+            }
+
+            bullets.forEach((b, i) => {
+                b.y -= b.s;
+                ctx.fillStyle = "#FF0000"; ctx.fillRect(b.x, b.y, 3, 12);
+                if(b.y < 0) bullets.splice(i, 1);
+            });
+
+            let hitWall = false;
+            enemies.forEach((en, ei) => {
+                en.x += en.dir * (1.2 + (sector * 0.15));
+                if(en.x > 570 || en.x < 5) hitWall = true;
+                drawEnemy(en.x, en.y, Math.floor(ei/10));
+
+                bullets.forEach((b, bi) => {
+                    if(b.x > en.x && b.x < en.x+en.w && b.y > en.y && b.y < en.y+en.h) {
+                        enemies.splice(ei, 1);
+                        bullets.splice(bi, 1);
+                        score += 150;
+                    }
+                });
+                if(en.y > 300) gameActive = false;
+            });
+
+            if(hitWall) {
+                enemies.forEach(en => { en.dir *= -1; en.y += 15; });
+            }
+
+            drawRetroShip(player.x, player.y);
+
+            ctx.fillStyle = "#00D000";
+            ctx.font = "bold 12px Courier New";
+            ctx.fillText(`SCORE: ${score.toString().padStart(6, '0')}`, 10, 20);
+            ctx.fillText(`SECTOR: ${sector}`, 520, 20);
+
+            if(enemies.length === 0) { sector++; createEnemies(); }
+
+            if(!gameActive) {
+                ctx.fillStyle = "rgba(0,0,0,0.85)"; ctx.fillRect(0,0,600,350);
+                ctx.fillStyle = "#FF0000"; ctx.font = "24px Courier New"; ctx.textAlign = "center";
+                ctx.fillText("SYSTEM FAILURE", 300, 160);
+                ctx.fillStyle = "#FFF"; ctx.font = "14px Courier New";
+                ctx.fillText(`FINAL SCORE: ${score}`, 300, 190);
+                ctx.fillText("PRESS 'R' TO REBOOT", 300, 230);
+                ctx.textAlign = "start";
+            }
+            requestAnimationFrame(update);
+        }
+
+        createEnemies();
+        update();
     </script>
 </body>
 </html>

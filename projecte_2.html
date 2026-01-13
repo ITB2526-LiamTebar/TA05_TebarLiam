@@ -3,15 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 details | My portfolio</title>
+    <title>Project 2 Details | My portfolio</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .project-main-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .project-top-row {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .text-content { flex: 1; }
+
+        /* FOTO DE ARRIBA: Ajustada a 380px como pediste */
+        .medium-img {
+            width: 380px;
+            border: 1px solid #00D000;
+            filter: grayscale(1) brightness(0.8) sepia(100%) hue-rotate(90deg);
+            transition: 0.3s;
+        }
+
+        .large-img-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* FOTO DE ABAJO: Proporción equilibrada */
+        .large-img {
+            width: 75%;
+            max-height: 500px;
+            object-fit: contain;
+            border: 1px solid #00D000;
+            filter: grayscale(1) brightness(0.8) sepia(100%) hue-rotate(90deg);
+            transition: 0.4s;
+        }
+
+        .medium-img:hover, .large-img:hover {
+            filter: none;
+            border-color: #fff;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 900px) {
+            .project-top-row { flex-direction: column; }
+            .medium-img, .large-img { width: 100%; }
+        }
+    </style>
 </head>
 <body>
-
     <header>
-        <div class="logo">
-            <h1><img src="jarvis.jpg" alt="Jarvis, jerk it a lil'." width="75" height="75"></h1>
-        </div>
+        <div class="logo"><img src="jarvis.jpg" alt="Logo" width="75" height="75"></div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,37 +72,57 @@
 
     <main>
         <article>
-            <h2>Project 2 details: Data conversor.</h2>
-            <p class="data">Completion date: 17/11/2025.</p>
+            <h4>Project details: Data conversor.</h4>
+            <div class="cuerpo-caja">
+                <div class="project-main-wrapper">
 
-            <section id="descripcio">
-                <h3>General description: </h3>
-                <p>This project consists in a code capable of extracting info from a Google form which then filters and displays. It was developed as a way to introduce myself into different type of documents such as CSV, XML, JSON and HTML.</p>
-            </section>
+                    <div class="project-top-row">
+                        <div class="text-content">
+                            <p class="data">Completion date: 17/11/2025.</p>
+                            <section id="descripcio">
+                                <h3>Description:</h3>
+                                <p>Automation tool for extracting Google Forms data via API and converting it into structured formats like JSON, XML, or CSV.</p>
+                                <p>This tool is essential for processing large volumes of responses efficiently.</p>
+                            </section>
+                            <section id="tecnologies">
+                                <h3>Tech stack:</h3>
+                                <ul>
+                                    <li>Python (Pandas)</li>
+                                    <li>Google Cloud API</li>
+                                    <li>Data Structuring</li>
+                                </ul>
+                            </section>
+                        </div>
+                        <img src="csv3.jpg" alt="API Config" class="medium-img">
+                    </div>
 
-            <section id="tecnologies">
-                <h3>Tech used for this project:</h3>
-                <ul>
-                    <li>HTML5, CSS3 (Sass), JavaScript.</li>
-                    <li>Python 3 (with libraries such as Pandas, JSON, XML, etree, ElementTree).</li>
-                    <li>Google Forms & Google Sheets.</li>
-                    <li>AIs, such as Google Gemini.</li>
-                </ul>
-            </section>
+                    <div class="large-img-container">
+                        <h3>CSV data showcase:</h3>
+                        <img src="csv.png" alt="CSV Data Result" class="large-img">
+                    </div>
 
-            <section id="resultats">
-                <h3>Completion and conclusions:</h3>
-                <p>I really enjoyed making this project because I learned tons of new things, from filtering information to displaying, very basically, the results of the code. Making this wasn't easy at first asi I had no clue where to start but I caught up relatively fast thanks to aur friend Gemini over here...</p>
-            </section>
+                </div>
+            </div>
+            <a href="projectes.html" class="button" data-text="BACK">BACK</a>
         </article>
     </main>
 
     <footer>
-        <p>&copy; 2026 Liam. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
+        <div class="footer-content">
+            <div class="clock-container" id="retro-clock">00:00:00</div>
+            <p>&copy; 2026 Liam Tebar. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('retro-clock').textContent = `[ ${h} : ${m} : ${s} ]`;
+        }
+        setInterval(updateClock, 1000); updateClock();
+    </script>
 </body>
 </html>
