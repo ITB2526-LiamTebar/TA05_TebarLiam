@@ -6,95 +6,37 @@
     <title>Liam Tebar | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Layout Principal */
-        .home-grid {
-            display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .itb-info-top {
-            margin-bottom: 30px;
-            border-bottom: 1px dashed #00D000;
-            padding-bottom: 20px;
-        }
-
-        /* RULETA COMPACTA */
-        .casino-box {
-            margin: 20px 0;
-            border: 1px solid #00D000;
-            padding: 15px;
-            background: rgba(0, 20, 0, 0.9);
-            text-align: center;
-            max-width: 350px;
-        }
-
-        .roulette-display {
-            font-size: 2rem;
-            font-family: 'Courier New', monospace;
-            color: #00FF00;
-            margin: 10px 0;
-            text-shadow: 0 0 8px #00FF00;
-            border: 1px dashed #00D000;
-            display: inline-block;
-            padding: 5px 20px;
-        }
-
-        /* MAPA CUADRADO Y TEXTO ALINEADO */
-        .map-box {
-            position: sticky;
-            top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .map-wrapper-sidebar {
-            width: 300px;
-            text-align: center;
-        }
-
-        .map-container {
-            width: 300px;
-            height: 300px;
-            border: 2px solid #00D000;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-
-        .map-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            filter: invert(90%) hue-rotate(90deg) brightness(0.8) contrast(1.2);
-        }
-
-        @media (max-width: 900px) {
-            .home-grid { grid-template-columns: 1fr; }
-            .map-box { position: static; }
-        }
+        .home-grid { display: grid; grid-template-columns: 1fr 320px; gap: 30px; margin-top: 20px; }
+        .welcome-container { margin: 20px 0 40px 0; padding: 20px; border-left: 4px solid #00FF00; background: rgba(0, 30, 0, 0.1); }
+        #welcome-text { font-size: 1.5rem; font-weight: bold; color: #00FF00; text-shadow: 0 0 8px #00FF00; }
+        .cursor { display: inline-block; width: 10px; background-color: #00FF00; margin-left: 5px; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+        .casino-box { margin: 20px 0; border: 1px solid #00FF00; padding: 15px; background: rgba(0, 20, 0, 0.9); text-align: center; max-width: 350px; }
+        .roulette-display { font-size: 2rem; color: #00FF00; margin: 10px 0; text-shadow: 0 0 8px #00FF00; border: 1px dashed #00FF00; display: inline-block; padding: 5px 20px; }
+        .map-box { position: sticky; top: 20px; display: flex; flex-direction: column; align-items: center; }
+        .map-container { width: 300px; height: 300px; border: 2px solid #00FF00; overflow: hidden; margin-bottom: 15px; }
+        .map-iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(90deg) brightness(1.2); }
+        @media (max-width: 900px) { .home-grid { grid-template-columns: 1fr; } .map-box { position: static; } }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo"><img src="jarvis.jpg" alt="Logo" width="75" height="75"></div>
-        <nav>
-            <ul>
-                <li><a href="index.html" data-text="Home">Home</a></li>
-                <li><a href="projectes.html" data-text="Projects">Projects</a></li>
-                <li><a href="contacte.html" data-text="Contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="logo"><img src="jarvis.jpg" alt="Logo" width="75" height="75" style="border:1px solid #00FF00;"></div>
+        <nav><ul><li><a href="index.html">Home</a></li><li><a href="projectes.html">Projects</a></li><li><a href="contacte.html">Contact</a></li></ul></nav>
     </header>
 
     <main>
-        <section class="itb-info-top">
+        <section class="welcome-container">
+            <span id="welcome-text"></span><span class="cursor">&nbsp;</span>
+        </section>
+
+        <section class="itb-info-top" style="border-bottom: 1px dashed #00FF00; margin-bottom:30px; padding-bottom:20px;">
             <h2>Academic Profile: ITB Barcelona</h2>
-            <article style="border: 1px solid #00D000;">
+            <article>
                 <h4>Institut Tecnològic de Barcelona | ASIX Cybersecurity</h4>
                 <div class="cuerpo-caja" style="border: none;">
                     <p>Currently studying <strong>ASIX (Cybersecurity focus)</strong> at the ITB. This public center is specialized in high-level technological training in Nou Barris.</p>
+                    <p>Specializing in network administration, system defense, and ethical hacking protocols.</p>
                 </div>
             </article>
         </section>
@@ -106,12 +48,12 @@
                     <article>
                         <h4>Project 1: Hello world.</h4>
                         <div class="cuerpo-caja"><p>Basic Python script for initial environment testing.</p></div>
-                        <a href="projecte_1.html" class="button" data-text="DETAILS">DETAILS</a>
+                        <a href="projecte_1.html" class="button">DETAILS</a>
                     </article>
                     <article>
                         <h4>Project 2: Data conversor.</h4>
                         <div class="cuerpo-caja"><p>Extracting info from Google forms and saving it as JSON/CSV.</p></div>
-                        <a href="projecte_2.html" class="button" data-text="DETAILS">DETAILS</a>
+                        <a href="projecte_2.html" class="button">DETAILS</a>
                     </article>
                 </div>
 
@@ -121,51 +63,48 @@
                     <div class="roulette-display" id="roulette-num">00</div>
                     <div class="casino-controls">
                         <label>BET: </label>
-                        <input type="number" id="bet-amount" value="100" style="background:#000; color:#00D000; border:1px solid #00D000; width:60px;">
-                        <button id="spin-btn" onclick="spinRoulette()" class="button" style="padding: 2px 10px; font-size: 0.8rem;">SPIN!</button>
+                        <input type="number" id="bet-amount" value="100" style="background:#000; color:#00FF00; border:1px solid #00FF00; width:60px;">
+                        <button id="spin-btn" onclick="spinRoulette()" class="button">SPIN!</button>
                     </div>
                     <p id="game-msg" style="margin-top: 10px; font-size: 0.7rem; color: #888;">System ready.</p>
                 </section>
 
-                <div class="contenedor-skills">
-                    <article style="max-width: 350px;">
-                        <h4>My key skills:</h4>
-                        <div class="cuerpo-caja" style="border: none;">
-                            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
-                                <li>HTML & CSS (Responsive)</li>
-                                <li>Python 3 & Linux</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
+                <article style="max-width: 350px;">
+                    <h4>My key skills:</h4>
+                    <div class="cuerpo-caja" style="border: none;">
+                        <ul style="padding-left: 20px; list-style-type: square;">
+                            <li>HTML & CSS (Responsive Design)</li>
+                            <li>Python 3 (Automation & Scripts)</li>
+                            <li>Linux Terminal & Cybersecurity</li>
+                        </ul>
+                    </div>
+                </article>
             </section>
 
             <aside class="map-box">
                 <div class="map-wrapper-sidebar">
                     <h4 style="margin-bottom: 15px;">ITB Location</h4>
                     <div class="map-container">
-                        <iframe class="map-iframe"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2990.865918844073!2d2.1856381!3d41.4534579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bcba61746979%3A0xc3c004d440026e6d!2sITB%20-%20Institut%20Tecnol%C3%B2gic%20de%20Barcelona!5e0!3m2!1ses!2ses!4v1700000000000"
-                            allowfullscreen="" loading="lazy"></iframe>
+                        <iframe class="map-iframe" src="http://googleusercontent.com/maps.google.com/8"></iframe>
                     </div>
-                    <p style="font-size: 0.8rem; line-height: 1.4; color: #00D000;">
-                        <strong>ITB Barcelona</strong><br>
-                        C/ d'Aiguablava, 121,<br>
-                        08033 Barcelona
-                    </p>
+                    <p style="font-size: 0.8rem;"><strong>ITB Barcelona</strong><br>C/ d'Aiguablava, 121, 08033 Barcelona</p>
                 </div>
             </aside>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="clock-container" id="retro-clock">00:00:00</div>
-            <p>© 2026 Liam Tebar. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
+        const text = "WELCOME TO LIAM TEBAR'S SECURITY TERMINAL... ACCESS GRANTED.";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("welcome-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        window.onload = typeWriter;
+
         function updateClock() {
             const now = new Date();
             document.getElementById('retro-clock').textContent = `[ ${String(now.getHours()).padStart(2,'0')} : ${String(now.getMinutes()).padStart(2,'0')} : ${String(now.getSeconds()).padStart(2,'0')} ]`;
@@ -178,20 +117,16 @@
             const btn = document.getElementById('spin-btn');
             const display = document.getElementById('roulette-num');
             const msg = document.getElementById('game-msg');
-
             if (bet > credits || bet <= 0) { msg.textContent = "NO CREDITS"; return; }
-            btn.disabled = true;
-            let count = 0;
+            btn.disabled = true; let count = 0;
             const timer = setInterval(() => {
                 display.textContent = Math.floor(Math.random() * 37).toString().padStart(2, '0');
                 if (++count > 15) {
-                    clearInterval(timer);
-                    const res = Math.floor(Math.random() * 37);
+                    clearInterval(timer); const res = Math.floor(Math.random() * 37);
                     display.textContent = res.toString().padStart(2, '0');
-                    if (res !== 0 && res % 2 === 0) { credits += bet; msg.textContent = "WIN!"; msg.style.color = "#00FF00"; }
-                    else { credits -= bet; msg.textContent = "LOSE"; msg.style.color = "red"; }
-                    document.getElementById('user-credits').textContent = credits;
-                    btn.disabled = false;
+                    if (res !== 0 && res % 2 === 0) { credits += bet; msg.textContent = "WIN!"; }
+                    else { credits -= bet; msg.textContent = "LOSE"; }
+                    document.getElementById('user-credits').textContent = credits; btn.disabled = false;
                 }
             }, 60);
         }
